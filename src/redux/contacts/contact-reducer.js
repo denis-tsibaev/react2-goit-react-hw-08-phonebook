@@ -1,4 +1,5 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
+import { filterContacts } from './contact-actions';
 import {
     addContacts,
     deleteContacts,
@@ -13,7 +14,7 @@ const contacts = createReducer([], {
 });
 
 const filteredContacts = createReducer('', {
-    [filteredContacts]: (_, action) => action.payload,
+    [filterContacts]: (_, action) => action.payload,
 });
 
 const error = createReducer(null, {

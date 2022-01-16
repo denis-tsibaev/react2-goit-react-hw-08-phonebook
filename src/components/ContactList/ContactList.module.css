@@ -1,8 +1,15 @@
-.orderList {
-    font-size: 20px;
-}
-
-.contactListItem {
+.contactItem {
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.contactInfo {
+    margin-right: 50px;
+}
+
+.button {
+    width: 100px;
+    height: 30px;
 }
