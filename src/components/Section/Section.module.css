@@ -1,0 +1,8 @@
+.section {
+    width: 600px;
+    margin: 0 auto;
+    padding: 15px 70px;
+    text-align: left;
+
+    background-color: lightslategray;
+}
