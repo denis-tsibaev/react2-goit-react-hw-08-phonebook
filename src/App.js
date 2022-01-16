@@ -1,52 +1,57 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ContactForm from './components/ContactForm';
-import ContactList from './components/ContactList';
-import Filter from './components/Filter';
+import { Switch } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import PublicRoute from './components/PublicRoute';
 import Section from './components/Section';
-import TechInfo from './components/TechInfo/';
-import { filterContacts } from './redux/actions';
-import { deleteContacts, fetchContacts } from './redux/operations';
+import TechInfo from './components/TechInfo';
+import RegisterForm from './components/RegisterForm';
+import { getCurrentUser } from './redux/auth/auth-operations';
 import {
     getError,
-    getFilter,
-    getFilteredContacts,
+    getIsCurrentUser,
     getIsLoading,
-} from './redux/selectors';
+} from './redux/auth/auth-selectors';
 
-const App = () => {
+export default function App() {
     const dispatch = useDispatch();
-    const contacts = useSelector(getFilteredContacts);
-    const filteredContacts = useSelector(getFilter);
-    const errorMessage = useSelector(getError);
+    const currentUser = useSelector(getIsCurrentUser);
+    const error = useSelector(getError);
     const isLoading = useSelector(getIsLoading);
 
-    const onDeleteContact = id => dispatch(deleteContacts(id));
-    const findName = event => dispatch(filterContacts(event.target.value));
-
     useEffect(() => {
-        dispatch(fetchContacts());
+        dispatch(getCurrentUser());
     }, [dispatch]);
 
     return (
         <div className="appDiv">
-            <Section title="Phonebook">
-                <ContactForm />
-            </Section>
-            <Section title="Contacts">
-                <Filter onFilterChange={findName} value={filteredContacts} />
-                {errorMessage && (
-                    <TechInfo message="Something wrong! Please, try again later." />
-                )}
-                {isLoading && <TechInfo message="Loading..." />}
-
-                <ContactList
-                    contacts={contacts}
-                    onDeleteContact={onDeleteContact}
-                />
-            </Section>
+            {currentUser ? (
+                <Section title="Phonebook"></Section>
+            ) : (
+                <>
+                    <Navigation>
+                        <Switch>
+                            <PublicRoute exact path="/">
+                                <Section title="Welcome to phonebook!"></Section>
+                            </PublicRoute>
+                            <PublicRoute
+                                exact
+                                path="/register"
+                                restricted
+                                redirectTo="/contacts"
+                            >
+                                <Section title="Registration">
+                                    <RegisterForm />
+                                    {isLoading && (
+                                        <TechInfo message={'Loading'} />
+                                    )}
+                                    {error && <TechInfo message={'error'} />}
+                                </Section>
+                            </PublicRoute>
+                        </Switch>
+                    </Navigation>
+                </>
+            )}
         </div>
     );
-};
-
-export default App;
+}

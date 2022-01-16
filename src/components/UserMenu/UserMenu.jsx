@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/auth-operations';
+// import style from './UserMenu.module.css';
 
-export default function UserMenu({ UserMail }) {
+export default function UserMenu({}) {
     const dispatch = useDispatch();
     const onBtnClick = event => {
         dispatch(logOut());
@@ -10,7 +12,7 @@ export default function UserMenu({ UserMail }) {
 
     return (
         <div>
-            <p>Hello, {userMail}</p>
+            <p>Hello, {}</p>
             <Button variant="outline-light" onClick={onBtnClick}>
                 Logout
             </Button>
