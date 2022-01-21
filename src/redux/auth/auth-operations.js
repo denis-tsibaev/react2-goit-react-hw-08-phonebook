@@ -6,7 +6,7 @@ const register = createAsyncThunk(
     'auth/register',
     async (credentials, thunkAPI) => {
         try {
-            const { data } = await axios.post('/user/sighnup', credentials);
+            const { data } = await axios.post('/users/signup', credentials);
             tokenForFetch.set(data.token);
             return data;
         } catch (error) {
@@ -24,10 +24,9 @@ const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
         return thunkAPI.rejectWithValue(error.message);
     }
 });
-
 const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     try {
-        await axios.post('users/logout');
+        await axios.post('/users/logout');
         tokenForFetch.unset();
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message);

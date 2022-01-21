@@ -1,0 +1,13 @@
+.navGreetings {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.greetings {
+    margin-right: 20px;
+    color: white;
+}
+
+.button {
+    display: block;
+}

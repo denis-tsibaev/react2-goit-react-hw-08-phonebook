@@ -37,7 +37,7 @@ export default function ContactsPage() {
 
     return (
         <>
-            <Section title={'Phonebook'}>
+            <Section title="Phonebook">
                 <ContactForm />
                 <h2 className={s.title}>Contacts</h2>
                 {contacts.length > 1 && (

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { InputGroup, FormControl } from 'react-bootstrap';
+
 export default function Filter({ filter, onFindName }) {
     return (
         <>

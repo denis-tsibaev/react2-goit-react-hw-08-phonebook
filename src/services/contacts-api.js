@@ -4,10 +4,10 @@ axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const tokenForFetch = {
     set(token) {
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        axios.defaults.headers.common.authorization = `Bearer ${token}`;
     },
     unset() {
-        axios.defaults.headers.common.Authorization = '';
+        axios.defaults.headers.common.authorization = '';
     },
 };
 

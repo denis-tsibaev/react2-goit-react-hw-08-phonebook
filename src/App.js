@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import PublicRoute from './components/PublicRoute';
-import PrivateRoute from './components/PrivateRoute';
+import { useDispatch, useSelector } from 'react-redux';
 import Section from './components/Section';
 import TechInfo from './components/TechInfo';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
+import Navigation from './components/Navigation';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import { getCurrentUser } from './redux/auth/auth-operations';
 import {
     getError,
@@ -46,7 +46,7 @@ export default function App() {
                             <Section title="Registration">
                                 <RegisterForm />
                                 {isLoading && <TechInfo message={'Loading'} />}
-                                {error && <TechInfo message={'error'} />}
+                                {error && <TechInfo message={error} />}
                             </Section>
                         </PublicRoute>
                         <PublicRoute

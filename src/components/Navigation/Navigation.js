@@ -1,9 +1,9 @@
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import UserMenu from '../UserMenu';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import UserMenu from '../UserMenu/UserMenu';
 import { getIsLoggedIn, getUserName } from '../../redux/auth/auth-selectors';
-import style from './Navigation.module.css';
+import { useSelector } from 'react-redux';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import s from './Navigation.module.css';
+import { NavLink } from 'react-router-dom';
 
 export default function Navigation() {
     const isLoggedIn = useSelector(getIsLoggedIn);
@@ -15,54 +15,69 @@ export default function Navigation() {
                 bg="primary"
                 variant="dark"
                 sticky="top"
-                className={style.navigation}
+                className={s.navigation}
             >
                 <Container>
                     <Navbar.Brand exact="true" to="/">
                         Phonebook
                     </Navbar.Brand>
                     <Nav className="me-auto">
-                        <div className={style.navigationBar}>
+                        <div className={s.navigationBar}>
+                            {/* <div className={s.main}> */}
+
+                            {/* <Nav.Link exact="true" href="/" className={s.home} eventKey={2}>
+                Home
+              </Nav.Link> */}
                             <NavLink
                                 exact
                                 to="/"
-                                className={style.navLink}
-                                activeClassName={style.navLinkActive}
+                                className={s.navLink}
+                                activeClassName={s.navLinkActive}
                             >
                                 Home
                             </NavLink>
+                            {/* </div> */}
 
                             {isLoggedIn ? (
-                                <div className={style.greetingsBox}>
+                                <div className={s.greetingsBox}>
                                     <NavLink
                                         to="/contacts"
-                                        className={style.navLink}
-                                        activeClassName={style.navLinkActive}
+                                        className={s.navLink}
+                                        activeClassName={s.navLinkActive}
                                     >
                                         Phonebook
                                     </NavLink>
+                                    {/* <Nav.Link href="/contacts" className={s.phonebook}>
+                    Phonebook
+                  </Nav.Link> */}
                                     <UserMenu
                                         userMail={userEmail}
-                                        className={style.userMenu}
+                                        className={s.userMenu}
                                     />
                                 </div>
                             ) : (
-                                <div className={style.entrance}>
+                                <div className={s.entrance}>
                                     <NavLink
                                         exact
                                         to="/login"
-                                        className={style.navLink}
-                                        activeClassName={style.navLinkActive}
+                                        className={s.navLink}
+                                        activeClassName={s.navLinkActive}
                                     >
-                                        Log in
+                                        LogIn
                                     </NavLink>
+                                    {/* <Nav.Link exact="true" href="/login" eventKey={2}>
+                    LogIn
+                  </Nav.Link> */}
                                     <NavLink
                                         to="/register"
-                                        className={style.navLink}
-                                        activeClassName={style.navLinkActive}
+                                        className={s.navLink}
+                                        activeClassName={s.navLinkActive}
                                     >
                                         Registration
                                     </NavLink>
+                                    {/* <Nav.Link href="/register" eventKey={2}>
+                    Registration
+                  </Nav.Link> */}
                                 </div>
                             )}
                         </div>
